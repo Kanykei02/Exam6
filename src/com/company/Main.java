@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -29,9 +30,30 @@ public class Main {
         students.add(student9);
         students.add(student10);
         System.out.println(students);
+
+        System.out.println(getNamesList(students));
+        System.out.println(getNamesListByAge(students, 12));
+        printAnonymously(students);
+        System.out.println(getNamesFirstLetterList(students));
     }
 
-//    public static List<String> getNamesList(Student[] students){
-//
-//    }
+    public static List<String> getNamesList(ArrayList<Student> studentList){
+        List<String> studNamesList = studentList.stream().map(x -> x.getName()).collect(Collectors.toList());
+        return studNamesList;
+    }
+
+    public static List<String> getNamesListByAge(ArrayList<Student> studentList, int minAge){
+        List<String> studAgesList = studentList.stream().filter(x -> x.getAge() >= minAge).map(x -> x.getName()).collect(Collectors.toList());
+        return studAgesList;
+    }
+
+    public static void printAnonymously(ArrayList<Student> studentList) {
+        studentList.stream().forEach(x -> System.out.println("ID: " + x.getId() + ", Средняя оценка: " + x.getAverageRating()));
+    }
+
+    public static List<String> getNamesFirstLetterList(ArrayList<Student> studentList){
+        List<String> studNamesLengthList = studentList.stream().map(x -> x.getName().substring(0, 1) + x.getName().length()).collect(Collectors.toList());
+        return studNamesLengthList;
+    }
+
 }
