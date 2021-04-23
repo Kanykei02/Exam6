@@ -52,7 +52,7 @@ public class Main {
     }
 
     public static List<String> getNamesFirstLetterList(ArrayList<Student> studentList){
-        List<String> studNamesLengthList = studentList.stream().map(x -> x.getName().substring(0, 1) + x.getName().length()).collect(Collectors.toList());
+        List<String> studNamesLengthList = studentList.stream().map(x -> x.getName() + " -> " + x.getName().substring(0, 1) + x.getName().length()).collect(Collectors.toList());
         return studNamesLengthList;
     }
 
